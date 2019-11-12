@@ -48,7 +48,7 @@ abstract class TestCase extends Orchestra
     protected function setUpRoutes(): void
     {
         Route::group(['middleware' => ['web']], function () {
-            Route::WelcomeNotification();
+            Route::handleWelcome();
         });
     }
 }
