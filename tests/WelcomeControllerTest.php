@@ -34,7 +34,7 @@ class WelcomeControllerTest extends TestCase
         $this
             ->get($this->welcomeNotification->showWelcomeFormUrl)
             ->assertSuccessful()
-            ->assertViewIs('WelcomeNotification::welcome');
+            ->assertViewIs('welcomeNotification::welcome');
     }
 
     public function it_will_show_the_invalid_link_view_when_the_link_is_invalid()
@@ -44,7 +44,7 @@ class WelcomeControllerTest extends TestCase
         $this
             ->get($invalidWelcomeUrl)
             ->assertSuccessful()
-            ->assertViewIs('WelcomeNotification::invalidWelcomeLink');
+            ->assertViewIs('welcomeNotification::invalidWelcomeLink');
     }
 
     /** @test */
@@ -83,7 +83,7 @@ class WelcomeControllerTest extends TestCase
         $this
             ->get($this->welcomeNotification->showWelcomeFormUrl)
             ->assertSuccessful()
-            ->assertViewIs('WelcomeNotification::invalidWelcomeLink');
+            ->assertViewIs('welcomeNotification::invalidWelcomeLink');
     }
 
     protected function savePassword(string $password): void

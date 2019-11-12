@@ -28,6 +28,6 @@ class WelcomeNotificationTest extends TestCase
 
         $this->user->notify(new WelcomeNotification());
 
-        Notification::assertSentTo($this->user, WelcomeNotification::class);
+        Notification::assertSentTo($this->user, welcomeNotification::class);
     }
 }

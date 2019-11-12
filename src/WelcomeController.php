@@ -21,7 +21,7 @@ class WelcomeController
             return $this->invalidLinkResponse();
         }
 
-        return view('WelcomeNotification::welcome')->with([
+        return view('welcomeNotification::welcome')->with([
             'token' => $token,
             'email' => $request->email,
             'user' => $user,
@@ -35,7 +35,7 @@ class WelcomeController
 
     protected function invalidLinkResponse()
     {
-        return view('WelcomeNotification::invalidWelcomeLink');
+        return view('welcomeNotification::invalidWelcomeLink');
     }
 
     protected function sendResetResponse(): Response

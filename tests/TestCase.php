@@ -43,6 +43,7 @@ abstract class TestCase extends Orchestra
 
         config()->set('auth.providers.users.model', User::class);
         config()->set('app.key', 'base64:CmNWRD9Yia6R0YVuFal7MUuE32Iqzk2whpEeknTSexc=');
+        config()->set('mail.driver', 'log');
     }
 
     protected function setUpRoutes(): void
