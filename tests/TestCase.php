@@ -3,21 +3,10 @@
 namespace Spatie\WelcomeNotification\Tests;
 
 use CreateAuthTables;
-use CreateMailCoachTables;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Spatie\BladeX\BladeXServiceProvider;
-use Spatie\Feed\FeedServiceProvider;
-use Spatie\MailCoach\Http\Front\Controllers\TrackClicksController;
-use Spatie\MailCoach\Http\Front\Controllers\TrackOpensController;
-use Spatie\MailCoach\Http\Front\Controllers\UnsubscribeController;
-use Spatie\MailCoach\MailCoachServiceProvider;
-use Spatie\MailCoach\Models\CampaignLink;
-use Spatie\MailCoach\Models\CampaignSend;
-use Spatie\MailCoach\Models\Subscription;
-use Spatie\MediaLibrary\MediaLibraryServiceProvider;
 use Spatie\WelcomeNotification\WelcomeNotificationServiceProvider;
 
 abstract class TestCase extends Orchestra
@@ -49,7 +38,7 @@ abstract class TestCase extends Orchestra
             'prefix' => '',
         ]);
 
-        include_once __DIR__ . '/database/migrations/create_auth_tables.php.stub';
+        include_once __DIR__.'/database/migrations/create_auth_tables.php.stub';
         (new CreateAuthTables())->up();
 
         config()->set('auth.providers.users.model', User::class);

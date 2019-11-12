@@ -19,7 +19,7 @@ class WelcomeController
 
         if (! $this->broker()->tokenExists($user, $token)) {
             return $this->invalidLinkResponse();
-        };
+        }
 
         return view('WelcomeNotification::welcome')->with([
             'token' => $token,
