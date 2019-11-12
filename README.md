@@ -20,12 +20,6 @@ You can install the package via composer:
 composer require spatie/laravel-welcome-notification
 ```
 
-Next you must use this macro somewhere in your routes file.
-
-```php
-Route::handleWelcome();
-```
-
 The package ships with two views you should style yourself. You can publish the views with this command:
 
 ```bash
@@ -34,6 +28,27 @@ php artisan vendor:publish --provider="Spatie\WelcomeNotification\WelcomeNotific
 
 The `welcome` view will be rendered when somebody click the welcome link in the welcome notification mail. The `invalidWelcomeLink` will be rendered whenever somebody clicks an invalid welcome link.
 
+Next you'll need to create a controller of your own that will extend `Spatie\WelcomeNotification\WelcomeController`
+
+```php
+namespace App\Http\Controllers\Auth
+
+use Spatie\WelcomeNotification\WelcomeController as BaseWelcomeController;
+
+class MyWelcomeController extends BaseWelcomeController
+{
+}
+```
+
+Finally, you'll have to register these routes
+
+```php
+use App\Http\Controllers\Auth\MyWelcomeController::class;
+
+Route::get('welcome/{userId}/{token}', [MyWelcomeController::class], 'showWelcomeForm'])->name('welcome');
+Route::post('welcome', [MyWelcomeController::class, 'savePassword'])->name('welcome.save-password');
+```
+
 ## Usage
 
 Here's how you can send a welcome notification to a user that you just created.
@@ -41,6 +56,22 @@ Here's how you can send a welcome notification to a user that you just created.
 ```php
 $user->notify(new Spatie\WelcomeNotification\WelcomeNotification());
 ```
+
+## Handling successful requests
+
+After the a user has successfully set a new password the `sendPasswordSavedResponse` of the `WelcomeController` will get called.
+
+```php
+class MyWelcomeController extends BaseWelcomeController
+{
+    public function sendPasswordSavedResponse()
+    {
+        return redirect()->route('home');
+    }
+}
+```
+
+## Customizing the notification
 
 By default the `WelcomeNotification` will send a mail. If you wish to customize the mail you can extend `WelcomeNotification` and override the `buildWelcomeNotificationMessage` method.
 

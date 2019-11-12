@@ -38,8 +38,13 @@ class WelcomeController
         return response()->view('welcomeNotification::invalidWelcomeLink', [], 404);
     }
 
-    protected function sendResetResponse(): Response
+    protected function sendPasswordSavedResponse(): Response
     {
         return redirect()->to($this->redirectPath())->with('status', 'Welcome! You are now logged in!');
+    }
+
+    protected function sendResetResponse(): Response
+    {
+        return $this->afterPasswordSavedReponse();
     }
 }

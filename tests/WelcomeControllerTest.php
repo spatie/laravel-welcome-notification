@@ -82,7 +82,7 @@ class WelcomeControllerTest extends TestCase
 
         $this
             ->get($this->welcomeNotification->showWelcomeFormUrl)
-            ->assertSuccessful()
+            ->assertStatus(404)
             ->assertViewIs('welcomeNotification::invalidWelcomeLink');
     }
 

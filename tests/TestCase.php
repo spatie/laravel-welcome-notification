@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Spatie\WelcomeNotification\WelcomeController;
 use Spatie\WelcomeNotification\WelcomeNotificationServiceProvider;
 
 abstract class TestCase extends Orchestra
@@ -49,7 +50,8 @@ abstract class TestCase extends Orchestra
     protected function setUpRoutes(): void
     {
         Route::group(['middleware' => ['web']], function () {
-            Route::handleWelcome();
+            Route::get('welcome/{userId}/{token}', ['\\'.WelcomeController::class, 'showWelcomeForm'])->name('welcome');
+            Route::post('welcome', ['\\'.WelcomeController::class, 'savePassword'])->name('welcome.save-password');
         });
     }
 }
