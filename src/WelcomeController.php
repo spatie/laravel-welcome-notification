@@ -35,7 +35,7 @@ class WelcomeController
 
     protected function invalidLinkResponse()
     {
-        return view('welcomeNotification::invalidWelcomeLink');
+        return response()->view('welcomeNotification::invalidWelcomeLink', [], 404);
     }
 
     protected function sendResetResponse(): Response
