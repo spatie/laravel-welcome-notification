@@ -45,6 +45,6 @@ class WelcomeController
 
     protected function sendResetResponse(): Response
     {
-        return $this->afterPasswordSavedReponse();
+        return $this->sendPasswordSavedResponse();
     }
 }
