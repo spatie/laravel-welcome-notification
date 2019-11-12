@@ -115,7 +115,7 @@ We publish all received postcards [on our company website](https://spatie.be/en/
 
 ## Credits
 
-- [Freek Van der HErten](https://github.com/freekmurze)
+- [Freek Van der Herten](https://github.com/freekmurze)
 - [All Contributors](../../contributors)
 
 ## Support us
