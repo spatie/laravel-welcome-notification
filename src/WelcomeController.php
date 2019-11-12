@@ -3,20 +3,16 @@
 namespace Spatie\WelcomeNotification;
 
 use Illuminate\Foundation\Auth\ResetsPasswords;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
+use Spatie\WelcomeNotification\Tests\Models\User;
 use Symfony\Component\HttpFoundation\Response;
 
 class WelcomeController
 {
     use ResetsPasswords;
 
-    public function showWelcomeForm(Request $request, string $userId, string $token = null)
+    public function showWelcomeForm(Request $request, User $user, string $token = null)
     {
-        if (! $user = User::find($userId)) {
-            return $this->invalidLinkResponse();
-        }
-
         if (! $this->broker()->tokenExists($user, $token)) {
             return $this->invalidLinkResponse();
         }

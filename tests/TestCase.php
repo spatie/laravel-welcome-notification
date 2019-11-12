@@ -50,7 +50,7 @@ abstract class TestCase extends Orchestra
     protected function setUpRoutes(): void
     {
         Route::group(['middleware' => ['web']], function () {
-            Route::get('welcome/{userId}/{token}', ['\\'.WelcomeController::class, 'showWelcomeForm'])->name('welcome');
+            Route::get('welcome/{user}/{token}', ['\\'.WelcomeController::class, 'showWelcomeForm'])->name('welcome');
             Route::post('welcome', ['\\'.WelcomeController::class, 'savePassword'])->name('welcome.save-password');
         });
     }
