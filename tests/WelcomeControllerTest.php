@@ -39,7 +39,7 @@ class WelcomeControllerTest extends TestCase
 
     public function it_will_show_the_invalid_link_view_when_the_link_is_invalid()
     {
-        $invalidWelcomeUrl = $this->welcomeNotification->showWelcomeFormUrl . 'blabla';
+        $invalidWelcomeUrl = $this->welcomeNotification->showWelcomeFormUrl.'blabla';
 
         $this
             ->get($invalidWelcomeUrl)
@@ -93,7 +93,7 @@ class WelcomeControllerTest extends TestCase
                 'token' => $this->welcomeNotification->token,
                 'email' => $this->user->email,
                 'password' => $password,
-                'password_confirmation' => $password
+                'password_confirmation' => $password,
             ])
             ->assertRedirect('/home');
     }

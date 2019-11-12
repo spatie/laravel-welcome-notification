@@ -3,6 +3,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-welcome-mail.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-welcome-mail)
 [![Build Status](https://img.shields.io/travis/spatie/laravel-welcome-mail/master.svg?style=flat-square)](https://travis-ci.org/spatie/laravel-welcome-mail)
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/laravel-welcome-mail.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/laravel-welcome-mail)
+[![StyleCI](https://github.styleci.io/repos/221157282/shield?branch=master)](https://github.styleci.io/repos/221157282)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-welcome-mail.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-welcome-mail)
 
 Using this package you can send a `WelcomeNotification` to a new user of your app. The notification contain a link to a screen where the user can set an initial password.
