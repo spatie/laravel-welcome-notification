@@ -1,10 +1,10 @@
 # Send a welcome notification to new users
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-welcome-mail.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-welcome-mail)
-[![Build Status](https://img.shields.io/travis/spatie/laravel-welcome-mail/master.svg?style=flat-square)](https://travis-ci.org/spatie/laravel-welcome-mail)
-[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/laravel-welcome-mail.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/laravel-welcome-mail)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-welcome-notification.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-welcome-notification)
+[![Build Status](https://img.shields.io/travis/spatie/laravel-welcome-notification/master.svg?style=flat-square)](https://travis-ci.org/spatie/laravel-welcome-notification)
+[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/laravel-welcome-notification.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/laravel-welcome-notification)
 [![StyleCI](https://github.styleci.io/repos/221157282/shield?branch=master)](https://github.styleci.io/repos/221157282)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-welcome-mail.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-welcome-mail)
+[![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-welcome-notification.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-welcome-notification)
 
 Using this package you can send a `WelcomeNotification` to a new user of your app. The notification contain a link to a screen where the user can set an initial password.
 
@@ -17,7 +17,7 @@ $user->notify(new Spatie\WelcomeNotification\WelcomeNotification());
 You can install the package via composer:
 
 ```bash
-composer require spatie/laravel-welcome-mail
+composer require spatie/laravel-welcome-notification
 ```
 
 Next you must use this macro somewhere in your routes file.
