@@ -44,7 +44,7 @@ $user->notify(new Spatie\WelcomeNotification\WelcomeNotification());
 By default the `WelcomeNotification` will send a mail. If you wish to customize the mail you can extend `WelcomeNotification` and override the `buildWelcomeNotificationMessage` method.
 
 ```php
-class MyCustomWelcomeNotification extend WelcomeNotification
+class MyCustomWelcomeNotification extends WelcomeNotification
 {
     public function buildWelcomeNotificationMessage(): Illuminate\Notifications\Messages\MailMessage
     {
