@@ -16,10 +16,10 @@ class WelcomeNotificationServiceProvider extends ServiceProvider
             });
         });
 
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'WelcomeNotification');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'WelcomeNotification');
 
         $this->publishes([
-            __DIR__ . '/../resources/views' => resource_path('views/vendor/WelcomeNotification'),
+            __DIR__.'/../resources/views' => resource_path('views/vendor/WelcomeNotification'),
         ], 'views');
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Spatie\WelcomeNotification\Tests\Models;
 
-use Illuminate\Auth\Passwords\DatabaseTokenRepository;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
