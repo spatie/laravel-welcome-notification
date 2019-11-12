@@ -4,10 +4,11 @@ namespace Spatie\WelcomeNotification\Tests\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\WelcomeNotification\ReceivesWelcomeNotification;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, ReceivesWelcomeNotification;
 
     /**
      * The attributes that are mass assignable.
