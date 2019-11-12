@@ -10,7 +10,7 @@ class WelcomeNotificationServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::macro('handleWelcome', function (string $url = '') {
-            Route::prefix($url)->group(function () {
+            Route::prefix($url)->middleware('guest')->group(function () {
                 Route::get('welcome/{userId}/{token}', ['\\'.WelcomeController::class, 'showWelcomeForm'])->name('welcome');
                 Route::post('welcome', ['\\'.WelcomeController::class, 'savePassword'])->name('welcome.save-password');
             });
