@@ -16,20 +16,23 @@
         }
     ],
     "require": {
-        "php": "^7.3"
+        "php": "^7.3",
+        "illuminate/auth": "^6.5",
+        "illuminate/mail": "^6.5",
+        "illuminate/queue": "^6.5"
     },
     "require-dev": {
-        "symfony/var-dumper": "^4.3",
+        "orchestra/testbench": "^4.3",
         "phpunit/phpunit": "^8.2"
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\Skeleton\\": "src"
+            "Spatie\\WelcomeMail\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\Skeleton\\Tests\\": "tests"
+            "Spatie\\WelcomeMail\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -42,11 +45,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\Skeleton\\SkeletonServiceProvider"
-            ],
-            "aliases": {
-                "Skeleton": "Spatie\\Skeleton\\SkeletonFacade"
-            }
+                "Spatie\\WelcomeMail\\WelcomeMailServiceProvider"
+            ]
         }
     }
 }
