@@ -4,7 +4,7 @@ namespace Spatie\WelcomeMail\Tests;
 
 use Illuminate\Foundation\Auth\User;
 use Spatie\WelcomeMail\WelcomeController;
-use Spatie\WelcomeMail\WelcomeMail;
+use Spatie\WelcomeMail\WelcomeNotification;
 
 class WelcomeControllerTest extends TestCase
 {
@@ -12,7 +12,7 @@ class WelcomeControllerTest extends TestCase
     private $user;
 
     /** @var \Spatie\WelcomeMail\WelcomeMail */
-    private $welcomeMail;
+    private $welcomeNotification;
 
     public function setUp(): void
     {
@@ -23,21 +23,23 @@ class WelcomeControllerTest extends TestCase
             'name' => 'test',
         ]);
 
-        $this->welcomeMail = (new WelcomeMail($this->user));
+        $this->welcomeNotification = (new WelcomeNotification());
+
+        $this->welcomeNotification->toMail($this->user);
     }
 
     /** @test */
     public function it_can_show_the_welcome_form()
     {
         $this
-            ->get($this->welcomeMail->showWelcomeFormUrl)
+            ->get($this->welcomeNotification->showWelcomeFormUrl)
             ->assertSuccessful()
             ->assertViewIs('welcomeMail::auth.welcome');
     }
 
     public function it_will_show_the_invalid_link_view_when_the_link_is_invalid()
     {
-        $invalidWelcomeUrl = $this->welcomeMail->showWelcomeFormUrl . 'blabla';
+        $invalidWelcomeUrl = $this->welcomeNotification->showWelcomeFormUrl . 'blabla';
 
         $this
             ->get($invalidWelcomeUrl)
@@ -79,7 +81,7 @@ class WelcomeControllerTest extends TestCase
         $this->savePassword('my-new-password');
 
         $this
-            ->get($this->welcomeMail->showWelcomeFormUrl)
+            ->get($this->welcomeNotification->showWelcomeFormUrl)
             ->assertSuccessful()
             ->assertViewIs('welcomeMail::auth.invalidWelcomeLink');
     }
@@ -88,7 +90,7 @@ class WelcomeControllerTest extends TestCase
     {
         $this
             ->post(action([WelcomeController::class, 'savePassword']), [
-                'token' => $this->welcomeMail->token,
+                'token' => $this->welcomeNotification->token,
                 'email' => $this->user->email,
                 'password' => $password,
                 'password_confirmation' => $password

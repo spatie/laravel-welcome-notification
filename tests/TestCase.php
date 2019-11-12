@@ -4,12 +4,8 @@ namespace Spatie\WelcomeMail\Tests;
 
 use CreateAuthTables;
 use CreateMailCoachTables;
-use CreateUsersTable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\BladeX\BladeXServiceProvider;

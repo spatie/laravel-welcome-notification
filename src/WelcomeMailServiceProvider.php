@@ -21,11 +21,5 @@ class WelcomeMailServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../resources/views' => resource_path('views/vendor/welcomeMail'),
         ], 'views');
-
-        $this->publishes([
-            __DIR__.'/../resources/lang' => "{$this->app['path.lang']}/vendor/welcomeMail",
-        ]);
-
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang/', 'welcomeMail');
     }
 }
