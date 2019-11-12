@@ -1,17 +1,17 @@
 <?php
 
-namespace Spatie\WelcomeMail\Tests;
+namespace Spatie\WelcomeNotification\Tests;
 
 use Illuminate\Foundation\Auth\User;
-use Spatie\WelcomeMail\WelcomeController;
-use Spatie\WelcomeMail\WelcomeNotification;
+use Spatie\WelcomeNotification\WelcomeController;
+use Spatie\WelcomeNotification\WelcomeNotification;
 
 class WelcomeControllerTest extends TestCase
 {
     /** @var \Illuminate\Foundation\Auth\User */
     private $user;
 
-    /** @var \Spatie\WelcomeMail\WelcomeMail */
+    /** @var \Spatie\WelcomeNotification\WelcomeNotification */
     private $welcomeNotification;
 
     public function setUp(): void
@@ -34,7 +34,7 @@ class WelcomeControllerTest extends TestCase
         $this
             ->get($this->welcomeNotification->showWelcomeFormUrl)
             ->assertSuccessful()
-            ->assertViewIs('welcomeMail::auth.welcome');
+            ->assertViewIs('WelcomeNotification::welcome');
     }
 
     public function it_will_show_the_invalid_link_view_when_the_link_is_invalid()
@@ -44,7 +44,7 @@ class WelcomeControllerTest extends TestCase
         $this
             ->get($invalidWelcomeUrl)
             ->assertSuccessful()
-            ->assertViewIs('welcomeMail::auth.invalidWelcomeLink');
+            ->assertViewIs('WelcomeNotification::invalidWelcomeLink');
     }
 
     /** @test */
@@ -83,7 +83,7 @@ class WelcomeControllerTest extends TestCase
         $this
             ->get($this->welcomeNotification->showWelcomeFormUrl)
             ->assertSuccessful()
-            ->assertViewIs('welcomeMail::auth.invalidWelcomeLink');
+            ->assertViewIs('WelcomeNotification::invalidWelcomeLink');
     }
 
     protected function savePassword(string $password): void

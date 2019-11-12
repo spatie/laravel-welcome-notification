@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\WelcomeMail;
+namespace Spatie\WelcomeNotification;
 
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -35,10 +35,10 @@ class WelcomeNotification extends Notification
             return call_user_func(static::$toMailCallback, $notifiable, $this->token);
         }
 
-        return $this->buildWelcomeMailMessage();
+        return $this->buildWelcomeNotificationMessage();
     }
 
-    protected function buildWelcomeMailMessage(): MailMessage
+    protected function buildWelcomeNotificationMessage(): MailMessage
     {
         return (new MailMessage)
             ->subject(Lang::get('Welcome'))

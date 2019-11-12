@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\WelcomeMail;
+namespace Spatie\WelcomeNotification;
 
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Foundation\Auth\User;
@@ -21,7 +21,7 @@ class WelcomeController
             return $this->invalidLinkResponse();
         };
 
-        return view('welcomeMail::auth.welcome')->with([
+        return view('WelcomeNotification::welcome')->with([
             'token' => $token,
             'email' => $request->email,
             'user' => $user,
@@ -35,7 +35,7 @@ class WelcomeController
 
     protected function invalidLinkResponse()
     {
-        return view('welcomeMail::auth.invalidWelcomeLink');
+        return view('WelcomeNotification::invalidWelcomeLink');
     }
 
     protected function sendResetResponse(): Response

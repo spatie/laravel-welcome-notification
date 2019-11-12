@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\WelcomeMail\Tests;
+namespace Spatie\WelcomeNotification\Tests;
 
 use CreateAuthTables;
 use CreateMailCoachTables;
@@ -18,7 +18,7 @@ use Spatie\MailCoach\Models\CampaignLink;
 use Spatie\MailCoach\Models\CampaignSend;
 use Spatie\MailCoach\Models\Subscription;
 use Spatie\MediaLibrary\MediaLibraryServiceProvider;
-use Spatie\WelcomeMail\WelcomeMailServiceProvider;
+use Spatie\WelcomeNotification\WelcomeNotificationServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
@@ -36,7 +36,7 @@ abstract class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            WelcomeMailServiceProvider::class,
+            WelcomeNotificationServiceProvider::class,
         ];
     }
 
@@ -59,7 +59,7 @@ abstract class TestCase extends Orchestra
     protected function setUpRoutes(): void
     {
         Route::group(['middleware' => ['web']], function () {
-            Route::welcomeMail();
+            Route::WelcomeNotification();
         });
     }
 }

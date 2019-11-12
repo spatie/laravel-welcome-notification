@@ -1,11 +1,11 @@
 {
-    "name": "spatie/laravel-welcome-mail",
-    "description": "Send a welcome mail to new users",
+    "name": "spatie/laravel-welcome-notification",
+    "description": "Send a welcome notification to new users",
     "keywords": [
         "spatie",
         "laravel-welcome-mail"
     ],
-    "homepage": "https://github.com/spatie/laravel-welcome-mail",
+    "homepage": "https://github.com/spatie/laravel-welcome-notification",
     "license": "MIT",
     "authors": [
         {
@@ -18,7 +18,7 @@
     "require": {
         "php": "^7.3",
         "illuminate/auth": "^6.5",
-        "illuminate/mail": "^6.5",
+        "illuminate/notifications": "^6.5",
         "illuminate/queue": "^6.5"
     },
     "require-dev": {
@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\WelcomeMail\\": "src"
+            "Spatie\\WelcomeNotification\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\WelcomeMail\\Tests\\": "tests"
+            "Spatie\\WelcomeNotification\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -45,7 +45,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\WelcomeMail\\WelcomeMailServiceProvider"
+                "Spatie\\WelcomeNotification\\WelcomeNotificationServiceProvider"
             ]
         }
     }

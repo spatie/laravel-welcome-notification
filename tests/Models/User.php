@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\WelcomeMail\Tests\Models;
+namespace Spatie\WelcomeNotification\Tests\Models;
 
 use Illuminate\Auth\Passwords\DatabaseTokenRepository;
 use Illuminate\Foundation\Auth\User as Authenticatable;

@@ -1,11 +1,15 @@
-# Send a welcome mail to new users
+# Send a welcome notification to new users
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-welcome-mail.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-welcome-mail)
 [![Build Status](https://img.shields.io/travis/spatie/laravel-welcome-mail/master.svg?style=flat-square)](https://travis-ci.org/spatie/laravel-welcome-mail)
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/laravel-welcome-mail.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/laravel-welcome-mail)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-welcome-mail.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-welcome-mail)
 
-This package offers a `sendWelcomeMail` method than will send out a welcome mail to a new user of your app. The mail contains a link to a page where the new user can choose an initial password.
+Using this package you can send a `WelcomeNotification` to a new user of your app. The notification contain a link to a screen where the user can set an initial password.
+
+```php
+$user->notify(new Spatie\WelcomeNotification\WelcomeNotification());
+```
 
 ## Installation
 
@@ -15,16 +19,45 @@ You can install the package via composer:
 composer require spatie/laravel-welcome-mail
 ```
 
+Next you must use this macro somewhere in your routes file.
+
+```php
+Route::handleWelcome();
+```
+
+The package ships with two views you should style yourself. You can publish the views with this command:
+
+```bash
+php artisan vendor:publish --provider="Spatie\WelcomeNotification\WelcomeNotificationServiceProvider" --tag="views"
+```
+
+The `welcome` view will be rendered when somebody click the welcome link in the welcome notification mail. The `invalidWelcomeLink` will be rendered whenever somebody clicks an invalid welcome link.
+
 ## Usage
 
-``` php
-$skeleton = new Spatie\Skeleton();
-echo $skeleton->echoPhrase('Hello, Spatie!');
+Here's how you can send a welcome notification to a user that you just created.
+
+```php
+$user->notify(new Spatie\WelcomeNotification\WelcomeNotification());
+```
+
+By default the `WelcomeNotification` will send a mail. If you wish to customize the mail you can extend `WelcomeNotification` and override the `buildWelcomeNotificationMessage` method.
+
+```php
+class MyCustomWelcomeNotification extend WelcomeNotification
+{
+    public function buildWelcomeNotificationMessage(): Illuminate\Notifications\Messages\MailMessage
+    {
+        return (new MailMessage)
+            ->subject('Welcome to my app')
+            ->action(Lang::get('Set initial password'), $this->showWelcomeFormUrl)
+    }
+}
 ```
 
 ### Testing
 
-``` bash
+```bash
 composer test
 ```
 
@@ -50,7 +83,7 @@ We publish all received postcards [on our company website](https://spatie.be/en/
 
 ## Credits
 
-- [freekmurze](https://github.com/Freek Van der Herten)
+- [Freek Van der HErten](https://github.com/freekmurze)
 - [All Contributors](../../contributors)
 
 ## Support us

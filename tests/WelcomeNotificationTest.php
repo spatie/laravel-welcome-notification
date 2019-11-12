@@ -1,16 +1,14 @@
 <?php
 
-namespace Spatie\WelcomeMail\Tests;
+namespace Spatie\WelcomeNotification\Tests;
 
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
-use Spatie\WelcomeMail\Tests\Models\User;
-use Spatie\WelcomeMail\WelcomeMail;
-use Spatie\WelcomeMail\WelcomeNotification;
+use Spatie\WelcomeNotification\Tests\Models\User;
+use Spatie\WelcomeNotification\WelcomeNotification;
 
 class WelcomeNotificationTest extends TestCase
 {
-    /** @var \Spatie\WelcomeMail\Tests\Models\User */
+    /** @var \Spatie\WelcomeNotification\Tests\Models\User */
     private $user;
 
     public function setUp(): void
