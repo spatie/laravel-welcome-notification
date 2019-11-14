@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('welcome', $user) }}">
+<form method="POST">
     @csrf
 
     <input type="hidden" name="email" value="{{ $user->email }}"/>
