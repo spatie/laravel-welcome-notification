@@ -7,7 +7,6 @@ use Illuminate\Foundation\Auth\User;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Lang;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\URL;
 
 class WelcomeNotification extends Notification
