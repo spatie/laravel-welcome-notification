@@ -3,8 +3,8 @@
 namespace Spatie\WelcomeNotification;
 
 use Illuminate\Foundation\Auth\RedirectsUsers;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
-use Spatie\WelcomeNotification\Tests\Models\User;
 use Symfony\Component\HttpFoundation\Response;
 
 class WelcomeController
