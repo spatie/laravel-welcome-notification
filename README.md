@@ -51,7 +51,7 @@ The `welcome` view will be rendered when somebody click the welcome link in the 
 Next you'll need to create a controller of your own that will extend `Spatie\WelcomeNotification\WelcomeController`
 
 ```php
-namespace App\Http\Controllers\Auth
+namespace App\Http\Controllers\Auth;
 
 use Spatie\WelcomeNotification\WelcomeController as BaseWelcomeController;
 
@@ -66,11 +66,11 @@ You'll have to register these routes:
 
 ```php
 use Spatie\WelcomeNotification\WelcomesNewUsers;
-use App\Http\Controllers\Auth\WelcomeController;
+use App\Http\Controllers\Auth\MyWelcomeController;
 
 Route::group(['middleware' => ['web', WelcomesNewUsers::class,]], function () {
-    Route::get('welcome/{user}', [WelcomeController::class, 'showWelcomeForm'])->name('welcome');
-    Route::post('welcome/{user}', [WelcomeController::class, 'savePassword']);
+    Route::get('welcome/{user}', [MyWelcomeController::class, 'showWelcomeForm'])->name('welcome');
+    Route::post('welcome/{user}', [MyWelcomeController::class, 'savePassword']);
 });
 ```
 
