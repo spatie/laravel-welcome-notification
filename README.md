@@ -76,7 +76,7 @@ Route::group(['middleware' => ['web', WelcomesNewUsers::class,]], function () {
 
 ### Preparing the user model
 
-You must apply the `\Spatie\WelcomeNotificationReceivesWelcomeNotification` trait to your `User` model.
+You must apply the `\Spatie\WelcomeNotification\ReceivesWelcomeNotification` trait to your `User` model.
 
 ## Usage
 
