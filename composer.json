@@ -19,12 +19,12 @@
         "php": "^7.3",
         "illuminate/auth": "^6.5",
         "illuminate/notifications": "^6.5",
-        "illuminate/queue": "^6.5",
-        "spatie/test-time": "^1.1"
+        "illuminate/queue": "^6.5"
     },
     "require-dev": {
         "orchestra/testbench": "^4.3",
-        "phpunit/phpunit": "^8.2"
+        "phpunit/phpunit": "^8.2",
+        "spatie/test-time": "^1.1"
     },
     "autoload": {
         "psr-4": {
