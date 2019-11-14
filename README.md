@@ -45,7 +45,7 @@ Finally, you'll have to register these routes
 ```php
 use App\Http\Controllers\Auth\MyWelcomeController::class;
 
-Route::get('welcome/{userId}/{token}', [MyWelcomeController::class], 'showWelcomeForm'])->name('welcome');
+Route::get('welcome/{user}/{token}', [MyWelcomeController::class], 'showWelcomeForm'])->name('welcome');
 Route::post('welcome', [MyWelcomeController::class, 'savePassword'])->name('welcome.save-password');
 ```
 
