@@ -27,7 +27,7 @@ composer require spatie/laravel-welcome-notification
 You must publish provided by this package by executing this command:
 
 ```bash
-php artisan vendor:publish --provider="Spatie\WelcomeNotification\WelcomeNotificationServiceProvider" --tag="migrates"
+php artisan vendor:publish --provider="Spatie\WelcomeNotification\WelcomeNotificationServiceProvider" --tag="migrations"
 ```
 
 Next, you must migrate your database.
