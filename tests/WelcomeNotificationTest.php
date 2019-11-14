@@ -26,7 +26,7 @@ class WelcomeNotificationTest extends TestCase
     {
         Notification::fake();
 
-        $this->user->sendWelcomeNotifcation();
+        $this->user->sendWelcomeNotification(now()->addDay());
 
         Notification::assertSentTo($this->user, welcomeNotification::class);
     }

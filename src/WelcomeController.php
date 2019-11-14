@@ -2,6 +2,7 @@
 
 namespace Spatie\WelcomeNotification;
 
+use Illuminate\Foundation\Auth\RedirectsUsers;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Spatie\WelcomeNotification\Tests\Models\User;
@@ -9,29 +10,27 @@ use Symfony\Component\HttpFoundation\Response;
 
 class WelcomeController
 {
-    use ResetsPasswords;
+    use RedirectsUsers;
 
-    public function showWelcomeForm(Request $request, User $user, string $token = null)
+    public function showWelcomeForm(Request $request, User $user)
     {
-        if (! $this->broker()->tokenExists($user, $token)) {
-            return $this->invalidLinkResponse();
-        }
-
         return view('welcomeNotification::welcome')->with([
-            'token' => $token,
             'email' => $request->email,
             'user' => $user,
         ]);
     }
 
-    public function savePassword(Request $request)
+    public function savePassword(Request $request, User $user)
     {
-        return $this->reset($request);
-    }
+        $request->validate($this->rules());
 
-    protected function invalidLinkResponse()
-    {
-        return response()->view('welcomeNotification::invalidWelcomeLink', [], 404);
+        $user->password = bcrypt($request->password);
+        $user->welcome_valid_until = null;
+        $user->save();
+
+        auth()->login($user);
+
+        return $this->sendPasswordSavedResponse();
     }
 
     protected function sendPasswordSavedResponse(): Response
@@ -39,8 +38,10 @@ class WelcomeController
         return redirect()->to($this->redirectPath())->with('status', 'Welcome! You are now logged in!');
     }
 
-    protected function sendResetResponse(): Response
+    protected function rules()
     {
-        return $this->sendPasswordSavedResponse();
+        return [
+            'password' => 'required|confirmed|min:6',
+        ];
     }
 }

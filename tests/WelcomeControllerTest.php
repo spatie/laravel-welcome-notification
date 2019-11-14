@@ -2,8 +2,8 @@
 
 namespace Spatie\WelcomeNotification\Tests;
 
-use Illuminate\Foundation\Auth\User;
-use Spatie\WelcomeNotification\WelcomeController;
+use Spatie\TestTime\TestTime;
+use Spatie\WelcomeNotification\Tests\Models\User;
 use Spatie\WelcomeNotification\WelcomeNotification;
 
 class WelcomeControllerTest extends TestCase
@@ -23,8 +23,7 @@ class WelcomeControllerTest extends TestCase
             'name' => 'test',
         ]);
 
-        $this->welcomeNotification = (new WelcomeNotification());
-
+        $this->welcomeNotification = (new WelcomeNotification(now()->addDay()));
         $this->welcomeNotification->toMail($this->user);
     }
 
@@ -78,19 +77,36 @@ class WelcomeControllerTest extends TestCase
     /** @test */
     public function after_being_used_the_welcome_url_is_not_valid_anymore()
     {
+        $this->withExceptionHandling();
+
         $this->savePassword('my-new-password');
 
         $this
             ->get($this->welcomeNotification->showWelcomeFormUrl)
-            ->assertStatus(404)
-            ->assertViewIs('welcomeNotification::invalidWelcomeLink');
+            ->assertStatus(401);
+    }
+
+    /** @test */
+    public function the_welcome_link_will_expire_after_the_given_point_in_time()
+    {
+        $this->withExceptionHandling();
+
+        TestTime::freeze();
+
+        $welcomeNotification = (new WelcomeNotification(now()->addMinute()));
+        $welcomeNotification->toMail($this->user);
+
+        TestTime::addSeconds(59);
+        $this->get($this->welcomeNotification->showWelcomeFormUrl)->assertSuccessful();
+
+        TestTime::addSecond();
+        $this->get($this->welcomeNotification->showWelcomeFormUrl)->assertStatus(401);
     }
 
     protected function savePassword(string $password): void
     {
         $this
-            ->post(action([WelcomeController::class, 'savePassword']), [
-                'token' => $this->welcomeNotification->token,
+            ->post($this->welcomeNotification->showWelcomeFormUrl, [
                 'email' => $this->user->email,
                 'password' => $password,
                 'password_confirmation' => $password,

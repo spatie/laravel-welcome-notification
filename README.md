@@ -20,13 +20,31 @@ You can install the package via composer:
 composer require spatie/laravel-welcome-notification
 ```
 
-The package ships with two views you should style yourself. You can publish the views with this command:
+### Migrating the database
+
+You must publish provided by this package by executing this command:
+
+```bash
+php artisan vendor:publish --provider="Spatie\WelcomeNotification\WelcomeNotificationServiceProvider" --tag="migrates"
+```
+
+Next, you must migrate your database.
+
+```php
+php artisan migrate
+```
+
+### Preparing the view
+
+The package ships with a welcome view you should style yourself. You can publish the views with this command:
 
 ```bash
 php artisan vendor:publish --provider="Spatie\WelcomeNotification\WelcomeNotificationServiceProvider" --tag="views"
 ```
 
-The `welcome` view will be rendered when somebody click the welcome link in the welcome notification mail. The `invalidWelcomeLink` will be rendered whenever somebody clicks an invalid welcome link.
+The `welcome` view will be rendered when somebody click the welcome link in the welcome notification mail. 
+
+### Preparing the WelcomeController
 
 Next you'll need to create a controller of your own that will extend `Spatie\WelcomeNotification\WelcomeController`
 
@@ -40,21 +58,32 @@ class MyWelcomeController extends BaseWelcomeController
 }
 ```
 
-Finally, you'll have to register these routes
+### Registering the routes
+
+You'll have to register these routes:
 
 ```php
-use App\Http\Controllers\Auth\MyWelcomeController::class;
+use Spatie\WelcomeNotification\WelcomesNewUsers;
+use App\Http\Controllers\Auth\WelcomeController;
 
-Route::get('welcome/{user}/{token}', [MyWelcomeController::class], 'showWelcomeForm'])->name('welcome');
-Route::post('welcome', [MyWelcomeController::class, 'savePassword'])->name('welcome.save-password');
+Route::group(['middleware' => ['web', WelcomesNewUsers::class,]], function () {
+    Route::get('welcome/{user}', [WelcomeController::class, 'showWelcomeForm'])->name('welcome');
+    Route::post('welcome/{user}', [WelcomeController::class, 'savePassword']);
+});
 ```
+
+### Preparing the user model
+
+You must apply the `\Spatie\WelcomeNotificationReceivesWelcomeNotification` trait to your `User` model.
 
 ## Usage
 
 Here's how you can send a welcome notification to a user that you just created.
 
 ```php
-$user->notify(new Spatie\WelcomeNotification\WelcomeNotification());
+$expiresAt = now()->addDay();
+
+$user->sendWelcomeNotification($expiresAt);
 ```
 
 ## Handling successful requests
@@ -84,6 +113,15 @@ class MyCustomWelcomeNotification extends WelcomeNotification
             ->subject('Welcome to my app')
             ->action(Lang::get('Set initial password'), $this->showWelcomeFormUrl)
     }
+}
+```
+
+To use the custom notification you must add a method called `sendWelcomeNotification` to your `User` model.
+
+```php
+public function sendWelcomeNotification(Carbon $validUntil)
+{
+    $this->notify(new MyCustomWelcomeNotification($validUntil));
 }
 ```
 

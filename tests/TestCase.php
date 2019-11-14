@@ -2,11 +2,16 @@
 
 namespace Spatie\WelcomeNotification\Tests;
 
+use AddWelcomeValidUntilFieldToUsersTable;
 use CreateAuthTables;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Routing\Middleware\ValidateSignature;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Spatie\WelcomeNotification\WelcomesNewUsers;
 use Spatie\WelcomeNotification\WelcomeController;
 use Spatie\WelcomeNotification\WelcomeNotificationServiceProvider;
 
@@ -18,7 +23,9 @@ abstract class TestCase extends Orchestra
 
         Model::unguard();
 
-        $this->setUpRoutes();
+        $this
+            ->setUpRoutes()
+            ->migrateDatabase();
 
         $this->withoutExceptionHandling();
     }
@@ -39,19 +46,34 @@ abstract class TestCase extends Orchestra
             'prefix' => '',
         ]);
 
-        include_once __DIR__.'/database/migrations/create_auth_tables.php.stub';
-        (new CreateAuthTables())->up();
-
         config()->set('auth.providers.users.model', User::class);
         config()->set('app.key', 'base64:CmNWRD9Yia6R0YVuFal7MUuE32Iqzk2whpEeknTSexc=');
         config()->set('mail.driver', 'log');
     }
 
-    protected function setUpRoutes(): void
+    protected function setUpRoutes()
     {
-        Route::group(['middleware' => ['web']], function () {
-            Route::get('welcome/{user}/{token}', ['\\'.WelcomeController::class, 'showWelcomeForm'])->name('welcome');
-            Route::post('welcome', ['\\'.WelcomeController::class, 'savePassword'])->name('welcome.save-password');
+        Route::group(['middleware' => ['web', WelcomesNewUsers::class,]], function () {
+            Route::get('welcome/{user}', ['\\'.WelcomeController::class, 'showWelcomeForm'])->name('welcome');
+            Route::post('welcome/{user}', ['\\'.WelcomeController::class, 'savePassword']);
         });
+
+        return $this;
+    }
+
+    protected function migrateDatabase()
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('email');
+            $table->string('name');
+            $table->string('password')->nullable();
+            $table->timestamps();
+        });
+
+        include_once __DIR__ . '/../database/migrations/add_welcome_valid_until_field_to_users_table.php.stub';
+        (new AddWelcomeValidUntilFieldToUsersTable())->up();
+
+        return $this;
     }
 }

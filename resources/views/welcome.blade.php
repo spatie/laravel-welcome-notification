@@ -1,8 +1,7 @@
-<form method="POST" action="{{ route('welcome.save-password') }}">
+<form method="POST" action="{{ route('welcome', $user) }}">
     @csrf
 
     <input type="hidden" name="email" value="{{ $user->email }}"/>
-    <input type="hidden" name="token" value="{{ $token }}"/>
 
     <div>
         <label for="password">{{ __('Password') }}</label>

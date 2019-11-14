@@ -2,11 +2,13 @@
 
 namespace Spatie\WelcomeNotification;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\URL;
 
 class WelcomeNotification extends Notification
 {
@@ -14,13 +16,18 @@ class WelcomeNotification extends Notification
     public $user;
 
     /** @var string */
-    public $token;
-
-    /** @var string */
     public $showWelcomeFormUrl;
 
     /** @var \Closure|null */
     public static $toMailCallback;
+
+    /** @var \Carbon\Carbon */
+    public $validUntil;
+
+    public function __construct(Carbon $validUntil)
+    {
+        $this->validUntil = $validUntil;
+    }
 
     public function via($notifiable)
     {
@@ -56,8 +63,11 @@ class WelcomeNotification extends Notification
     {
         $this->user = $user;
 
-        $this->token = Password::getRepository()->create($user);
+        $this->user->welcome_valid_until = $this->validUntil;
+        $this->user->save();
 
-        $this->showWelcomeFormUrl = route('welcome', [$this->user->id, $this->token]);
+        $this->showWelcomeFormUrl = URL::temporarySignedRoute(
+            'welcome', $this->validUntil, ['user' => $user->id]
+        );
     }
 }
