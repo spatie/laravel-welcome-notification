@@ -3,7 +3,6 @@
 namespace Spatie\WelcomeNotification;
 
 use Illuminate\Foundation\Auth\RedirectsUsers;
-use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Spatie\WelcomeNotification\Tests\Models\User;
 use Symfony\Component\HttpFoundation\Response;

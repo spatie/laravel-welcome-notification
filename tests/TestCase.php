@@ -3,17 +3,15 @@
 namespace Spatie\WelcomeNotification\Tests;
 
 use AddWelcomeValidUntilFieldToUsersTable;
-use CreateAuthTables;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Auth\User;
-use Illuminate\Routing\Middleware\ValidateSignature;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Spatie\WelcomeNotification\WelcomesNewUsers;
 use Spatie\WelcomeNotification\WelcomeController;
 use Spatie\WelcomeNotification\WelcomeNotificationServiceProvider;
+use Spatie\WelcomeNotification\WelcomesNewUsers;
 
 abstract class TestCase extends Orchestra
 {
@@ -53,7 +51,7 @@ abstract class TestCase extends Orchestra
 
     protected function setUpRoutes()
     {
-        Route::group(['middleware' => ['web', WelcomesNewUsers::class,]], function () {
+        Route::group(['middleware' => ['web', WelcomesNewUsers::class]], function () {
             Route::get('welcome/{user}', ['\\'.WelcomeController::class, 'showWelcomeForm'])->name('welcome');
             Route::post('welcome/{user}', ['\\'.WelcomeController::class, 'savePassword']);
         });
@@ -71,7 +69,7 @@ abstract class TestCase extends Orchestra
             $table->timestamps();
         });
 
-        include_once __DIR__ . '/../database/migrations/add_welcome_valid_until_field_to_users_table.php.stub';
+        include_once __DIR__.'/../database/migrations/add_welcome_valid_until_field_to_users_table.php.stub';
         (new AddWelcomeValidUntilFieldToUsersTable())->up();
 
         return $this;

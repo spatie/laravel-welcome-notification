@@ -9,7 +9,6 @@ class WelcomesNewUsers
 {
     public function handle($request, Closure $next)
     {
-
         if (! $request->hasValidSignature()) {
             abort(401, 'The welcome link does not have a valid signature or is expired.');
         }
@@ -21,7 +20,7 @@ class WelcomesNewUsers
         if (is_null($request->user->welcome_valid_until)) {
             return abort(401, 'The welcome link has already been used.');
         }
-//dd(Carbon::createFromTimestamp($request->user->welcome_valid_until), $request->user->welcome_valid_until);
+        //dd(Carbon::createFromTimestamp($request->user->welcome_valid_until), $request->user->welcome_valid_until);
         if (Carbon::create($request->user->welcome_valid_until)->isPast()) {
             return abort(401, 'The welcome link has expired.');
         }
