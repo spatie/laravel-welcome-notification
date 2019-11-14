@@ -9,7 +9,9 @@
 Using this package you can send a `WelcomeNotification` to a new user of your app. The notification contain a secure link to a screen where the user can set an initial password.
 
 ```php
-$user->notify(new Spatie\WelcomeNotification\WelcomeNotification());
+$expiresAt = now()->addDay();
+
+$user->sendWelcomeNotification($expiresAt);
 ```
 
 ## Installation
