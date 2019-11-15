@@ -119,7 +119,7 @@ class MyCustomWelcomeNotification extends WelcomeNotification
 To use the custom notification you must add a method called `sendWelcomeNotification` to your `User` model.
 
 ```php
-public function sendWelcomeNotification(Carbon $validUntil)
+public function sendWelcomeNotification(\Carbon\Carbon $validUntil)
 {
     $this->notify(new MyCustomWelcomeNotification($validUntil));
 }
