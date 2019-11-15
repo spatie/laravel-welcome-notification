@@ -36,19 +36,13 @@ Next, you must migrate your database.
 php artisan migrate
 ```
 
-### Preparing the view
+### Preparing the user model
 
-The package ships with a welcome view you should style yourself. You can publish the views with this command:
-
-```bash
-php artisan vendor:publish --provider="Spatie\WelcomeNotification\WelcomeNotificationServiceProvider" --tag="views"
-```
-
-The `welcome` view will be rendered when somebody click the welcome link in the welcome notification mail. 
+You must apply the `\Spatie\WelcomeNotification\ReceivesWelcomeNotification` trait to your `User` model.
 
 ### Preparing the WelcomeController
 
-Next you'll need to create a controller of your own that will extend `Spatie\WelcomeNotification\WelcomeController`
+Next you'll need to create a controller of your own that will extend `Spatie\WelcomeNotification\WelcomeController`. This controller will be used to show the welcome form and to save the password set by a user.
 
 ```php
 namespace App\Http\Controllers\Auth;
@@ -74,9 +68,13 @@ Route::group(['middleware' => ['web', WelcomesNewUsers::class,]], function () {
 });
 ```
 
-### Preparing the user model
+### Preparing the welcome form view
 
-You must apply the `\Spatie\WelcomeNotification\ReceivesWelcomeNotification` trait to your `User` model.
+The `welcome` view that ships with the package, will be rendered when somebody click the welcome link in the welcome notification mail. You should style this view yourself yourself. You can publish the views with this command:
+
+```bash
+php artisan vendor:publish --provider="Spatie\WelcomeNotification\WelcomeNotificationServiceProvider" --tag="views"
+```
 
 ## Usage
 
@@ -126,6 +124,10 @@ public function sendWelcomeNotification(Carbon $validUntil)
     $this->notify(new MyCustomWelcomeNotification($validUntil));
 }
 ```
+
+## Validating extra fields
+
+The default welcome form that ships with this package only asks for a password. You can add more fields to the form by [publishing the view](https://github.com/spatie/laravel-welcome-notification#preparing-the-view)
 
 ### Testing
 
