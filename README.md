@@ -70,7 +70,7 @@ Route::group(['middleware' => ['web', WelcomesNewUsers::class,]], function () {
 
 ### Preparing the welcome form view
 
-The `welcome` view that ships with the package, will be rendered when somebody click the welcome link in the welcome notification mail. You should style this view yourself yourself. You can publish the views with this command:
+The `welcome` view that ships with the package, will be rendered when somebody click the welcome link in the welcome notification mail. You should style this view yourself. You can publish the views with this command:
 
 ```bash
 php artisan vendor:publish --provider="Spatie\WelcomeNotification\WelcomeNotificationServiceProvider" --tag="views"
