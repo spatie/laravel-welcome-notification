@@ -32,7 +32,7 @@ php artisan vendor:publish --provider="Spatie\WelcomeNotification\WelcomeNotific
 
 Next, you must migrate your database.
 
-```php
+```bash
 php artisan migrate
 ```
 
