@@ -5,6 +5,7 @@ namespace Spatie\WelcomeNotification\Tests;
 use Spatie\TestTime\TestTime;
 use Spatie\WelcomeNotification\Tests\Models\User;
 use Spatie\WelcomeNotification\WelcomeNotification;
+use Symfony\Component\HttpFoundation\Response;
 
 class WelcomeControllerTest extends TestCase
 {
@@ -83,7 +84,7 @@ class WelcomeControllerTest extends TestCase
 
         $this
             ->get($this->welcomeNotification->showWelcomeFormUrl)
-            ->assertStatus(401);
+            ->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     /** @test */
@@ -100,7 +101,7 @@ class WelcomeControllerTest extends TestCase
         $this->get($this->welcomeNotification->showWelcomeFormUrl)->assertSuccessful();
 
         TestTime::addSecond();
-        $this->get($this->welcomeNotification->showWelcomeFormUrl)->assertStatus(401);
+        $this->get($this->welcomeNotification->showWelcomeFormUrl)->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     protected function savePassword(string $password): void
