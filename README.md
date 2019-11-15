@@ -127,7 +127,22 @@ public function sendWelcomeNotification(Carbon $validUntil)
 
 ## Validating extra fields
 
-The default welcome form that ships with this package only asks for a password. You can add more fields to the form by [publishing the view](https://github.com/spatie/laravel-welcome-notification#preparing-the-view)
+The default welcome form that ships with this package only asks for a password. You can add more fields to the form by [publishing the view](https://github.com/spatie/laravel-welcome-notification#preparing-the-welcome-form-view) and adding more fields to it.
+
+To validate new fields you can override the `rules` function in your own `WelcomeController`. Here's an example where we want to validate an extra field named `job_title`.
+
+```php
+class MyWelcomeController extends BaseWelcomeController
+{
+    public function rules()
+    {
+        return [
+            'password' => 'required|confirmed|min:6',
+            'job_title' => 'required',
+        ];
+    }
+}
+```
 
 ### Testing
 
