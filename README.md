@@ -91,9 +91,12 @@ $user->sendWelcomeNotification($expiresAt);
 After the a user has successfully set a new password the `sendPasswordSavedResponse` of the `WelcomeController` will get called.
 
 ```php
+use Symfony\Component\HttpFoundation\Response;
+
 class MyWelcomeController extends BaseWelcomeController
 {
-    public function sendPasswordSavedResponse()
+    public function sendPasswordSavedResponse(): Response
+
     {
         return redirect()->route('home');
     }
