@@ -6,7 +6,7 @@
 [![StyleCI](https://github.styleci.io/repos/221157282/shield?branch=master)](https://github.styleci.io/repos/221157282)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-welcome-notification.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-welcome-notification)
 
-Using this package you can send a `WelcomeNotification` to a new user of your app. The notification contain a secure link to a screen where the user can set an initial password.
+Using this package you can send a `WelcomeNotification` to a new user of your app. The notification contains a secure link to a screen where the user can set an initial password.
 
 ```php
 $expiresAt = now()->addDay();
@@ -24,7 +24,7 @@ composer require spatie/laravel-welcome-notification
 
 ### Migrating the database
 
-You must publish provided by this package by executing this command:
+You must publish the migrations provided by this package by executing this command:
 
 ```bash
 php artisan vendor:publish --provider="Spatie\WelcomeNotification\WelcomeNotificationServiceProvider" --tag="migrations"
@@ -70,7 +70,7 @@ Route::group(['middleware' => ['web', WelcomesNewUsers::class,]], function () {
 
 ### Preparing the welcome form view
 
-The `welcome` view that ships with the package, will be rendered when somebody click the welcome link in the welcome notification mail. You should style this view yourself. You can publish the views with this command:
+The `welcome` view that ships with the package, will be rendered when somebody clicks the welcome link in the welcome notification mail. You should style this view yourself. You can publish the views with this command:
 
 ```bash
 php artisan vendor:publish --provider="Spatie\WelcomeNotification\WelcomeNotificationServiceProvider" --tag="views"
