@@ -108,9 +108,11 @@ class MyWelcomeController extends BaseWelcomeController
 By default the `WelcomeNotification` will send a mail. If you wish to customize the mail you can extend `WelcomeNotification` and override the `buildWelcomeNotificationMessage` method.
 
 ```php
+use Illuminate\Notifications\Messages\MailMessage;
+
 class MyCustomWelcomeNotification extends WelcomeNotification
 {
-    public function buildWelcomeNotificationMessage(): Illuminate\Notifications\Messages\MailMessage
+    public function buildWelcomeNotificationMessage(): MailMessage
     {
         return (new MailMessage)
             ->subject('Welcome to my app')
