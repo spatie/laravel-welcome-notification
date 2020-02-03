@@ -1,5 +1,5 @@
 {
-    "name": "msml/laravel-welcome-notification",
+    "name": "spatie/laravel-welcome-notification",
     "description": "Send a welcome notification to new users",
     "keywords": [
         "spatie",
@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^7.2",
+        "php": "^7.3",
         "illuminate/auth": "^6.5",
         "illuminate/notifications": "^6.5",
         "illuminate/queue": "^6.5"
@@ -28,12 +28,12 @@
     },
     "autoload": {
         "psr-4": {
-            "MSML\\WelcomeNotification\\": "src"
+            "Spatie\\WelcomeNotification\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "MSML\\WelcomeNotification\\Tests\\": "tests"
+            "Spatie\\WelcomeNotification\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -46,7 +46,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "MSML\\WelcomeNotification\\WelcomeNotificationServiceProvider"
+                "Spatie\\WelcomeNotification\\WelcomeNotificationServiceProvider"
             ]
         }
     }
