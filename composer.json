@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^7.3",
+        "php": "^7.2",
         "illuminate/auth": "^6.5",
         "illuminate/notifications": "^6.5",
         "illuminate/queue": "^6.5"
