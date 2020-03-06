@@ -65,8 +65,8 @@ class WelcomeControllerTest extends TestCase
         $this->savePassword($password);
 
         $this->assertTrue(auth()->validate([
-           'email' => $this->user->email,
-           'password' =>  $password,
+            'email' => $this->user->email,
+            'password' =>  $password,
         ]));
 
         $this->assertFalse(auth()->validate([
