@@ -40,7 +40,7 @@ class WelcomeController
     protected function rules()
     {
         return [
-            'password' => 'required|confirmed|min:6',
+            'password' => 'required|confirmed|min:8',
         ];
     }
 }
