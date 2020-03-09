@@ -2,15 +2,12 @@
 
 namespace Spatie\WelcomeNotification;
 
-use Illuminate\Foundation\Auth\RedirectsUsers;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class WelcomeController
 {
-    use RedirectsUsers;
-
     public function showWelcomeForm(Request $request, User $user)
     {
         return view('welcomeNotification::welcome')->with([
@@ -42,5 +39,14 @@ class WelcomeController
         return [
             'password' => 'required|confirmed|min:8',
         ];
+    }
+
+    public function redirectPath()
+    {
+        if (method_exists($this, 'redirectTo')) {
+            return $this->redirectTo();
+        }
+
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
     }
 }

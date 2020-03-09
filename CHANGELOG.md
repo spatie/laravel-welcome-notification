@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-welcome-mail` will be documented in this file
 
+## 2.0.0 - 2020-03-09
+
+- add support for Laravel 7
+
 ## 1.0.2 - 2020-03-06
 
 - Change password min length to be 8

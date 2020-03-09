@@ -17,13 +17,13 @@
     ],
     "require": {
         "php": "^7.3",
-        "illuminate/auth": "^6.5",
-        "illuminate/notifications": "^6.5",
-        "illuminate/queue": "^6.5"
+        "illuminate/auth": "^7.0",
+        "illuminate/notifications": "^7.0",
+        "illuminate/queue": "^7.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^4.3",
-        "phpunit/phpunit": "^8.2",
+        "orchestra/testbench": "^5.0",
+        "phpunit/phpunit": "^9.0",
         "spatie/test-time": "^1.1"
     },
     "autoload": {
@@ -49,5 +49,7 @@
                 "Spatie\\WelcomeNotification\\WelcomeNotificationServiceProvider"
             ]
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
