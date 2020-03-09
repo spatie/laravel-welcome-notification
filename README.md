@@ -1,7 +1,7 @@
 # Send a welcome notification to new users
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-welcome-notification.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-welcome-notification)
-[![Build Status](https://img.shields.io/travis/spatie/laravel-welcome-notification/master.svg?style=flat-square)](https://travis-ci.org/spatie/laravel-welcome-notification)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/spatie/laravel-welcome-notification/run-tests?label=tests)
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/laravel-welcome-notification.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/laravel-welcome-notification)
 [![StyleCI](https://github.styleci.io/repos/221157282/shield?branch=master)](https://github.styleci.io/repos/221157282)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-welcome-notification.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-welcome-notification)
