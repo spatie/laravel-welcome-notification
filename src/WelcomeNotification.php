@@ -38,7 +38,7 @@ class WelcomeNotification extends Notification
         $this->initializeNotificationProperties($notifiable);
 
         if (static::$toMailCallback) {
-            return call_user_func(static::$toMailCallback, $notifiable, $this->token);
+            return call_user_func(static::$toMailCallback, $notifiable);
         }
 
         return $this->buildWelcomeNotificationMessage();
@@ -66,7 +66,9 @@ class WelcomeNotification extends Notification
         $this->user->save();
 
         $this->showWelcomeFormUrl = URL::temporarySignedRoute(
-            'welcome', $this->validUntil, ['user' => $user->id]
+            'welcome',
+            $this->validUntil,
+            ['user' => $user->id]
         );
     }
 }
