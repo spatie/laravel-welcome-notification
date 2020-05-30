@@ -12,4 +12,11 @@ class AddWelcomeValidUntilFieldToUsersTable extends Migration
             $table->timestamp('welcome_valid_until')->nullable();
         });
     }
+
+    public function down()
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('welcome_valid_until');
+        });
+    }
 }
