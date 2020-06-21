@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-welcome-mail` will be documented in this file
 
+## 2.0.1 - 2020-07-21
+
+- improve copy
+
 ## 2.0.0 - 2020-03-09
 
 - add support for Laravel 7
