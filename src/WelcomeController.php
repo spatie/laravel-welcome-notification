@@ -4,6 +4,7 @@ namespace Spatie\WelcomeNotification;
 
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
 
 class WelcomeController
@@ -20,7 +21,7 @@ class WelcomeController
     {
         $request->validate($this->rules());
 
-        $user->password = bcrypt($request->password);
+        $user->password = Hash::make($request->password);
         $user->welcome_valid_until = null;
         $user->save();
 
