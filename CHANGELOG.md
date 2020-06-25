@@ -2,7 +2,11 @@
 
 All notable changes to `laravel-welcome-mail` will be documented in this file
 
-## 2.0.1 - 2020-07-21
+## 2.0.2 - 2020-07-24
+
+- fix password hashing #22
+
+## 2.0.1 - 2020-06-21
 
 - improve copy
 
