@@ -17,12 +17,12 @@
     ],
     "require": {
         "php": "^7.3",
-        "illuminate/auth": "^7.0",
-        "illuminate/notifications": "^7.0",
-        "illuminate/queue": "^7.0"
+        "illuminate/auth": "^7.0|^8.0",
+        "illuminate/notifications": "^7.0|^8.0",
+        "illuminate/queue": "^7.0|^8.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^5.0",
+        "orchestra/testbench": "^5.0|^6.0",
         "phpunit/phpunit": "^9.0",
         "spatie/test-time": "^1.1"
     },
