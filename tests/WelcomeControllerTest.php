@@ -66,12 +66,12 @@ class WelcomeControllerTest extends TestCase
 
         $this->assertTrue(auth()->validate([
             'email' => $this->user->email,
-            'password' =>  $password,
+            'password' => $password,
         ]));
 
         $this->assertFalse(auth()->validate([
             'email' => $this->user->email,
-            'password' =>  'invalid password',
+            'password' => 'invalid password',
         ]));
     }
 
