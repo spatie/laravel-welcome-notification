@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-welcome-mail` will be documented in this file
 
+## 2.0.4 - 2020-12-15
+
+- add support for PHP 8
+
 ## 2.0.3 - 2020-09-09
 
 - Support Laravel 8
