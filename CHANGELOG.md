@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-welcome-mail` will be documented in this file
 
+## 2.2.1 - 2021-08-16
+
+- allow `CarbonImmutable` (#29)
+
 ## 2.2.0 - 2021-01-10
 
 - add translation support (#27)
