@@ -2,7 +2,7 @@
 
 namespace Spatie\WelcomeNotification;
 
-use Carbon\Carbon;
+use Carbon\CarbonInterface;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
@@ -23,7 +23,7 @@ class WelcomeNotification extends Notification
     /** @var \Carbon\Carbon */
     public $validUntil;
 
-    public function __construct(Carbon $validUntil)
+    public function __construct(CarbonInterface $validUntil)
     {
         $this->validUntil = $validUntil;
     }
