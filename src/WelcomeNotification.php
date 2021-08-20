@@ -46,7 +46,7 @@ class WelcomeNotification extends Notification
 
     protected function buildWelcomeNotificationMessage(): MailMessage
     {
-        return (new MailMessage)
+        return (new MailMessage())
             ->subject(Lang::get('Welcome'))
             ->line(Lang::get('You are receiving this email because an account was created for you.'))
             ->action(Lang::get('Set initial password'), $this->showWelcomeFormUrl)
