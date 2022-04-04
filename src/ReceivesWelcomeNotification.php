@@ -7,11 +7,22 @@ use Carbon\Carbon;
 
 trait ReceivesWelcomeNotification
 {
-    public function useWelcomeNotificationKey(): string
+    /**
+     * Provides the property to be used by WelcomeNotification when generating
+     * the temporary signed route
+     * @return mixed
+     */
+    public function useWelcomeNotificationKey()
     {
         return $this->{$this->useWelcomeNotificationKeyName()};
     }
-    public function useWelcomeNotificationKeyName(): string
+
+    /**
+     * Provides the property key to be used by useWelcomeNotificationKey when
+     * not overridden by the model.
+     * @return string
+     */
+    public function useWelcomeNotificationKeyName()
     {
         return $this->getKeyName();
     }
