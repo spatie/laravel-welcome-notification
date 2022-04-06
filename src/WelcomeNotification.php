@@ -58,7 +58,6 @@ class WelcomeNotification extends Notification
         static::$toMailCallback = $callback;
     }
 
-
     protected function initializeNotificationProperties(User $user)
     {
         $this->user = $user;

@@ -4,7 +4,6 @@ namespace Spatie\WelcomeNotification;
 
 use Carbon\Carbon;
 
-
 trait ReceivesWelcomeNotification
 {
     /**
@@ -26,6 +25,7 @@ trait ReceivesWelcomeNotification
     {
         return $this->getKeyName();
     }
+
     public function sendWelcomeNotification(Carbon $validUntil)
     {
         $this->notify(new WelcomeNotification($validUntil));
