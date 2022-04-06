@@ -58,6 +58,7 @@ class WelcomeNotification extends Notification
         static::$toMailCallback = $callback;
     }
 
+
     protected function initializeNotificationProperties(User $user)
     {
         $this->user = $user;
@@ -68,7 +69,7 @@ class WelcomeNotification extends Notification
         $this->showWelcomeFormUrl = URL::temporarySignedRoute(
             'welcome',
             $this->validUntil,
-            ['user' => $user->id]
+            ['user' => $user->useWelcomeNotificationKey()]
         );
     }
 }
