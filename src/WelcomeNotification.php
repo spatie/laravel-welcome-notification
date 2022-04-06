@@ -68,7 +68,7 @@ class WelcomeNotification extends Notification
         $this->showWelcomeFormUrl = URL::temporarySignedRoute(
             'welcome',
             $this->validUntil,
-            ['user' => $user->useWelcomeNotificationKey()]
+            ['user' => $user->welcomeNotificationKeyValue()]
         );
     }
 }
