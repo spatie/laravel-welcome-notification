@@ -2,12 +2,13 @@
 
 namespace Spatie\WelcomeNotification;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
 
-class WelcomeController
+class WelcomeController extends Controller
 {
     public function showWelcomeForm(Request $request, User $user)
     {
