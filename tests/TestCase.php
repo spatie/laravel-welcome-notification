@@ -15,7 +15,7 @@ use Spatie\WelcomeNotification\WelcomesNewUsers;
 
 abstract class TestCase extends Orchestra
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -52,8 +52,8 @@ abstract class TestCase extends Orchestra
     protected function setUpRoutes()
     {
         Route::group(['middleware' => ['web', WelcomesNewUsers::class]], function () {
-            Route::get('welcome/{user}', ['\\'.WelcomeController::class, 'showWelcomeForm'])->name('welcome');
-            Route::post('welcome/{user}', ['\\'.WelcomeController::class, 'savePassword']);
+            Route::get('welcome/{user}', ['\\' . WelcomeController::class, 'showWelcomeForm'])->name('welcome');
+            Route::post('welcome/{user}', ['\\' . WelcomeController::class, 'savePassword']);
         });
 
         return $this;
@@ -69,7 +69,7 @@ abstract class TestCase extends Orchestra
             $table->timestamps();
         });
 
-        include_once __DIR__.'/../database/migrations/add_welcome_valid_until_field_to_users_table.php.stub';
+        include_once __DIR__ . '/../database/migrations/add_welcome_valid_until_field_to_users_table.php.stub';
         (new AddWelcomeValidUntilFieldToUsersTable())->up();
 
         return $this;
