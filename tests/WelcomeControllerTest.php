@@ -1,7 +1,5 @@
 <?php
 
-namespace Spatie\WelcomeNotification\Tests;
-
 use Spatie\TestTime\TestTime;
 use Spatie\WelcomeNotification\Tests\Models\User;
 use Spatie\WelcomeNotification\WelcomeNotification;
@@ -10,7 +8,6 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 use function Pest\Laravel\get;
 use function Pest\Laravel\withExceptionHandling;
-use function Pest\Laravel\withoutExceptionHandling;
 
 beforeEach(function () {
     $this->user = User::create([
@@ -29,8 +26,6 @@ it('can show the welcome form', function () {
 });
 
 it('will show the invalid link view when the link is invalid', function () {
-    withoutExceptionHandling();
-
     $invalidWelcomeUrl = $this->welcomeNotification->showWelcomeFormUrl . 'blabla';
 
     $this->get($invalidWelcomeUrl)

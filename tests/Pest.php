@@ -10,6 +10,12 @@ use function Pest\Laravel\post;
 
 uses(Spatie\WelcomeNotification\Tests\TestCase::class)->in('.');
 
+/*
+|--------------------------------------------------------------------------
+| Functions
+|--------------------------------------------------------------------------
+*/
+
 function savePassword(string $password): void
 {
     post(test()->welcomeNotification->showWelcomeFormUrl, [
