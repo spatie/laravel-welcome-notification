@@ -1,13 +1,14 @@
 <?php
 
+use function Pest\Laravel\get;
+use function Pest\Laravel\withExceptionHandling;
+
 use Spatie\TestTime\TestTime;
 use Spatie\WelcomeNotification\Tests\Models\User;
 use Spatie\WelcomeNotification\WelcomeNotification;
+
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-
-use function Pest\Laravel\get;
-use function Pest\Laravel\withExceptionHandling;
 
 beforeEach(function () {
     $this->user = User::create([
