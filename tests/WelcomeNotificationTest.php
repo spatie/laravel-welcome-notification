@@ -1,33 +1,20 @@
 <?php
 
-namespace Spatie\WelcomeNotification\Tests;
-
 use Illuminate\Support\Facades\Notification;
 use Spatie\WelcomeNotification\Tests\Models\User;
 use Spatie\WelcomeNotification\WelcomeNotification;
 
-class WelcomeNotificationTest extends TestCase
-{
-    /** @var \Spatie\WelcomeNotification\Tests\Models\User */
-    private $user;
+beforeEach(function () {
+    $this->user = User::create([
+        'email' => 'test@example.com',
+        'name' => 'test',
+    ]);
+});
 
-    public function setUp(): void
-    {
-        parent::setUp();
+it('can send the welcome notification', function () {
+    Notification::fake();
 
-        $this->user = User::create([
-            'email' => 'test@example.com',
-            'name' => 'test',
-        ]);
-    }
+    $this->user->sendWelcomeNotification(now()->addDay());
 
-    /** @test */
-    public function it_can_send_the_welcome_notification()
-    {
-        Notification::fake();
-
-        $this->user->sendWelcomeNotification(now()->addDay());
-
-        Notification::assertSentTo($this->user, welcomeNotification::class);
-    }
-}
+    Notification::assertSentTo($this->user, WelcomeNotification::class);
+});
