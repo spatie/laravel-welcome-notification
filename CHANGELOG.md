@@ -2,6 +2,21 @@
 
 All notable changes to `laravel-welcome-mail` will be documented in this file
 
+## 2.3.2 - 2023-02-06
+
+### What's Changed
+
+- Fix branch :  Changelog action by @Kristories in https://github.com/spatie/laravel-welcome-notification/pull/40
+- Refactor tests to Pest by @alexmanase in https://github.com/spatie/laravel-welcome-notification/pull/41
+- support Laravel 10
+
+### New Contributors
+
+- @Kristories made their first contribution in https://github.com/spatie/laravel-welcome-notification/pull/40
+- @alexmanase made their first contribution in https://github.com/spatie/laravel-welcome-notification/pull/41
+
+**Full Changelog**: https://github.com/spatie/laravel-welcome-notification/compare/2.3.1...2.3.2
+
 ## 2.2.1 - 2021-08-16
 
 - allow `CarbonImmutable` (#29)
