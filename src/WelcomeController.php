@@ -19,6 +19,9 @@ class WelcomeController
 
     public function savePassword(Request $request, User $user)
     {
+        if (! $request->hasValidSignature()) {
+            abort(401);
+        }
         $request->validate($this->rules());
 
         $user->password = Hash::make($request->password);
