@@ -2,6 +2,20 @@
 
 All notable changes to `laravel-welcome-mail` will be documented in this file
 
+## 2.4.0 - 2024-03-08
+
+### What's Changed
+
+* Fix broken readme badge by @patinthehat in https://github.com/spatie/laravel-welcome-notification/pull/51
+* Laravel 11.x Compatibility by @laravel-shift in https://github.com/spatie/laravel-welcome-notification/pull/54
+
+### New Contributors
+
+* @patinthehat made their first contribution in https://github.com/spatie/laravel-welcome-notification/pull/51
+* @laravel-shift made their first contribution in https://github.com/spatie/laravel-welcome-notification/pull/54
+
+**Full Changelog**: https://github.com/spatie/laravel-welcome-notification/compare/2.3.2...2.4.0
+
 ## 2.3.2 - 2023-02-06
 
 ### What's Changed
