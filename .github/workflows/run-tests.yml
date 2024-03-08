@@ -1,66 +1,78 @@
 name: run-tests
 
-on: [push, pull_request]
+on:
+  - push
+  - pull_request
 
 jobs:
-    test:
-        runs-on: ${{ matrix.os }}
-        strategy:
-            fail-fast: false
-            matrix:
-                os: [ubuntu-latest, windows-latest]
-                php: [8.2, 8.1, 8.0, 7.4, 7.3]
-                laravel: [10.*, 9.*, 8.*, 7.*]
-                dependency-version: [prefer-stable]
-                include:
-                
-                    -   laravel: 10.*
-                        testbench: 8.*
-                    -   laravel: 9.*
-                        testbench: 7.*
-                    -   laravel: 8.*
-                        testbench: 6.*
-                    -   laravel: 7.*
-                        testbench: 5.*
-                exclude:
-                    -   laravel: 10.*
-                        php: 8.0
-                    -   laravel: 10.*
-                        php: 7.4
-                    -   laravel: 10.*
-                        php: 7.3
-                    -   laravel: 9.*
-                        php: 7.4
-                    -   laravel: 9.*
-                        php: 7.3
-                    -   laravel: 7.*
-                        php: 8.1
-                    -   laravel: 7.*
-                        php: 8.2
+  test:
+    runs-on: ${{ matrix.os }}
 
-        name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        php: [8.2, 8.1, 8.0, 7.4, 7.3]
+        laravel: ['7.*', '8.*', '9.*', '10.*', '11.*']
+        dependency-version: [prefer-stable]
+        include:
+          - laravel: 10.*
+            testbench: 8.*
+          - laravel: 9.*
+            testbench: 7.*
+          - laravel: 8.*
+            testbench: 6.*
+          - laravel: 7.*
+            testbench: 5.*
+          - laravel: 11.*
+            testbench: 9.*
+        exclude:
+          - laravel: 10.*
+            php: 8.0
+          - laravel: 10.*
+            php: 7.4
+          - laravel: 10.*
+            php: 7.3
+          - laravel: 9.*
+            php: 7.4
+          - laravel: 9.*
+            php: 7.3
+          - laravel: 7.*
+            php: 8.1
+          - laravel: 7.*
+            php: 8.2
+          - laravel: 11.*
+            php: 8.1
+          - laravel: 11.*
+            php: 8.0
+          - laravel: 11.*
+            php: 7.4
+          - laravel: 11.*
+            php: 7.3
 
-        steps:
-            -   name: Checkout code
-                uses: actions/checkout@v3
+    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
 
-            -   name: Cache dependencies
-                uses: actions/cache@v2
-                with:
-                    path: ~/.composer/cache/files
-                    key: dependencies-laravel-${{ matrix.laravel }}-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-            -   name: Setup PHP
-                uses: shivammathur/setup-php@v2
-                with:
-                    php-version: ${{ matrix.php }}
-                    extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
-                    coverage: none
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.composer/cache/files
+          key: dependencies-laravel-${{ matrix.laravel }}-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
 
-            -   name: Install dependencies
-                run: |
-                    composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
-                    composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+          coverage: none
 
-            -   name: Execute tests
-                run: vendor/bin/pest
+      - name: Install dependencies
+        run: |
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+          composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
+
+      - name: Execute tests
+        run: vendor/bin/pest
