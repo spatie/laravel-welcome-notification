@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-welcome-mail` will be documented in this file
 
+## 2.4.1 - 2024-12-30
+
+**Full Changelog**: https://github.com/spatie/laravel-welcome-notification/compare/2.4.0...2.4.1
+
 ## 2.4.0 - 2024-03-08
 
 ### What's Changed
