@@ -6,7 +6,6 @@ use function Pest\Laravel\withExceptionHandling;
 use Spatie\TestTime\TestTime;
 use Spatie\WelcomeNotification\Tests\Models\User;
 use Spatie\WelcomeNotification\WelcomeNotification;
-
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
