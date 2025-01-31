@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-welcome-mail` will be documented in this file
 
+## 2.4.2 - 2025-01-31
+
+### What's Changed
+
+* using diffForHumans instead of diffInRealMinutes in the welcome message by @moisesh18 in https://github.com/spatie/laravel-welcome-notification/pull/57
+
+### New Contributors
+
+* @moisesh18 made their first contribution in https://github.com/spatie/laravel-welcome-notification/pull/57
+
+**Full Changelog**: https://github.com/spatie/laravel-welcome-notification/compare/2.4.1...2.4.2
+
 ## 2.4.1 - 2024-12-30
 
 **Full Changelog**: https://github.com/spatie/laravel-welcome-notification/compare/2.4.0...2.4.1
