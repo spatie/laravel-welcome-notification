@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-welcome-mail` will be documented in this file
 
+## 2.4.3 - 2025-02-20
+
+### What's Changed
+
+* Laravel 12.x Compatibility by @laravel-shift in https://github.com/spatie/laravel-welcome-notification/pull/58
+
+**Full Changelog**: https://github.com/spatie/laravel-welcome-notification/compare/2.4.2...2.4.3
+
 ## 2.4.2 - 2025-01-31
 
 ### What's Changed
