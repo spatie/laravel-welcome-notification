@@ -50,7 +50,7 @@ class WelcomeNotification extends Notification
             ->subject(Lang::get('Welcome'))
             ->line(Lang::get('You are receiving this email because an account was created for you.'))
             ->action(Lang::get('Set initial password'), $this->showWelcomeFormUrl)
-            ->line(Lang::get('This welcome link will expire in :count.', ['count' => $this->validUntil->diffForHumans()]));
+            ->line(Lang::get('This welcome link will expire :count.', ['count' => $this->validUntil->diffForHumans()]));
     }
 
     public static function toMailUsing($callback)
