@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-welcome-mail` will be documented in this file
 
+## 2.4.4 - 2025-02-26
+
+### What's Changed
+
+* Update WelcomeNotification.php by @marventhieme in https://github.com/spatie/laravel-welcome-notification/pull/59
+
+### New Contributors
+
+* @marventhieme made their first contribution in https://github.com/spatie/laravel-welcome-notification/pull/59
+
+**Full Changelog**: https://github.com/spatie/laravel-welcome-notification/compare/2.4.3...2.4.4
+
 ## 2.4.3 - 2025-02-20
 
 ### What's Changed
