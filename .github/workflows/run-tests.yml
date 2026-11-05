@@ -12,74 +12,33 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-        php: ['7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5']
-        laravel: ['7.*', '8.*', '9.*', '10.*', '11.*', '12.*', '13.*']
-        dependency-version: [prefer-stable]
+        php: ['8.2', '8.3', '8.4', '8.5', '8.6']
+        laravel: ['12.*', '13.*']
+        dependency-version: [prefer-lowest, prefer-stable]
         include:
-          - laravel: 10.*
-            testbench: 8.*
-          - laravel: 9.*
-            testbench: 7.*
-          - laravel: 8.*
-            testbench: 6.*
-          - laravel: 7.*
-            testbench: 5.*
-          - laravel: 11.*
-            testbench: 9.*
           - laravel: 12.*
             testbench: 10.*
           - laravel: 13.*
             testbench: 11.*
+          # Earlier Laravel 13 releases lack PHP 8.6 session handler methods.
+          - laravel: 13.*
+            php: '8.6'
+            framework: ^13.32.0
         exclude:
-          - laravel: 10.*
-            php: 8.0
-          - laravel: 10.*
-            php: 7.4
-          - laravel: 10.*
-            php: 7.3
-          - laravel: 9.*
-            php: 7.4
-          - laravel: 9.*
-            php: 7.3
-          - laravel: 7.*
-            php: 8.1
-          - laravel: 7.*
-            php: 8.2
-          - laravel: 11.*
-            php: 8.1
-          - laravel: 11.*
-            php: 8.0
-          - laravel: 11.*
-            php: 7.4
-          - laravel: 11.*
-            php: 7.3
-          - laravel: 12.*
-            php: 8.1
-          - laravel: 12.*
-            php: 8.0
-          - laravel: 12.*
-            php: 7.4
-          - laravel: 12.*
-            php: 7.3
-          - laravel: 13.*
-            php: '7.3'
-          - laravel: 13.*
-            php: '7.4'
-          - laravel: 13.*
-            php: '8.0'
-          - laravel: 13.*
-            php: '8.1'
           - laravel: 13.*
             php: '8.2'
+          # Laravel 12's session handlers lack create_sid() on PHP 8.6.
+          - laravel: 12.*
+            php: '8.6'
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.composer/cache/files
           key: dependencies-laravel-${{ matrix.laravel }}-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
@@ -93,8 +52,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
-          composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
+          composer require "laravel/framework:${{ matrix.framework || matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+          composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
       - name: Execute tests
-        run: vendor/bin/pest
+        run: |
+          php --version
+          vendor/bin/pest
