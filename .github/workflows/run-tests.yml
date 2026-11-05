@@ -20,9 +20,16 @@ jobs:
             testbench: 10.*
           - laravel: 13.*
             testbench: 11.*
+          # Earlier Laravel 13 releases lack PHP 8.6 session handler methods.
+          - laravel: 13.*
+            php: '8.6'
+            framework: ^13.32.0
         exclude:
           - laravel: 13.*
             php: '8.2'
+          # Laravel 12's session handlers lack create_sid() on PHP 8.6.
+          - laravel: 12.*
+            php: '8.6'
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
 
@@ -45,7 +52,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+          composer require "laravel/framework:${{ matrix.framework || matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
           composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
       - name: Execute tests
